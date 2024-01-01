@@ -1,0 +1,139 @@
+Zrobione:
+main-page.vue
+aboutus.vue
+collaboration.vue
+faq.vue
+collections.vue
+contact.vue
+
+//sklep
+order-status.vue
+shop.vue
+product-page.vue
+chcekout-page.vue
+cart.vue
+thanks-for-order.vue
+
+//blog
+blog.vue
+article.vue
+
+//system autoryzacji
+login.vue
+register.vue
+recover-password.vue
+reset-password.vue
+
+policy-privacy.vue
+statute.vue
+
+//panel administratora
+analitics.vue
+
+users-list.vue
+
+//blog
+blog-add-post.vue
+blog-add-photo.vue
+blog-add-content.vue
+blog-edit-content.vue
+
+//category
+category-list.vue
+category-add.vue
+category-edit.vue
+
+//newsletter
+newsletter-list.vue
+
+//orders
+order-list.vue
+order-content.vue
+
+//products
+product-list.vue
+product-add.vue
+product-add-meta.vue
+product-add-description.vue
+product-add-photo.vue
+product-edit.vue
+
+//promo-code
+promo-code-list.vue
+promo-code-add.vue
+
+//settings
+settings-account.vue
+change-email.vue
+
+Do zrobienia:
+
+//orders
+order-list.vue
+
+//settings
+settings-account.vue
+change-email.vue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+zrobic wyskakujaca informacje o zaakceptowaniu plikow cookies!!!! Wazne to jest
+
+
+wykresy
+npm install chart.js
+
+<template>
+  <div>
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+</template>
+
+<script>
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+
+export default {
+  mounted() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line', // Możesz zmienić typ wykresu na inny, np. 'bar', 'pie' itp.
+      data: {
+        labels: ['Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad'],
+        datasets: [{
+          label: 'Liczba odwiedzin',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+}
+</script>

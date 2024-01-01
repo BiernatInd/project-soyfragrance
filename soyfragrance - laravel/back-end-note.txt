@@ -1,0 +1,63 @@
+Zrobione:
+//category
+category-add.vue
+category-edit.vue
+category-list.vue
+
+//orders
+order-list-admin.vue
+order-content-admin.vue
+
+//products
+product-add
+product-add-description.vue
+product-add-meta.vue
+product-add-photo.vue
+product-list.vue
+product-edit.vue
+
+//blog
+blog-add-content.vue
+blog-add-meta.vue
+blog-add-photo.vue
+blog-add-post.vue
+blog-edit-content.vue
+blog-list.vue
+
+//users
+users-list.vue
+
+//newsletter
+newsletter-list.vue
+
+//promo-code
+promo-code-add.vue
+promo-code-list.vue
+
+//settings
+change-email-admin.vue
+settings-account-admin.vue
+
+//panel uzytkownika
+
+//settings
+change-email-user.vue
+settings-account-user.vue
+
+//zamowienia
+order-list-user.vue
+
+//orders
+sitemap.xml
+
+//analitics
+analitics.vue
+
+panel uzytkownika
+
+Do zrobienia drobne rzeczy:
+
+podpiac kategorie na stronie glownej i produkty
+podpiac produkty w kolekcjach
+
+podpiac popularne artykuly na blogu po prawej

@@ -1,0 +1,215 @@
+<template>
+   <header class="header">
+       <nav class="nav">
+           <div class="nav-left">
+                <router-link to="/">
+                    <img src="../../assets/logo.svg" alt="">
+                </router-link>
+           </div>
+           <div class="nav-right">
+                <div class="nav-menu" @click="toggleAdminMenu" :class="{ 'active': adminMenuActive}">
+                   <div class="wrapper-menu">
+                       <div class="line-menu half start"></div>
+                       <div class="line-menu"></div>
+                       <div class="line-menu half end"></div>
+                   </div>
+               </div>
+               <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" @click="toggleAdminAuthMenu" :class="{'active': adminAuthMenuActive}"> 
+                    <circle cx="20.5" cy="20.5" r="20.5" fill="#E2C799"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 16.25C16.5 15.6919 16.6099 15.1392 16.8235 14.6236C17.0371 14.108 17.3501 13.6394 17.7448 13.2448C18.1394 12.8501 18.608 12.5371 19.1236 12.3235C19.6392 12.1099 20.1919 12 20.75 12C21.3081 12 21.8608 12.1099 22.3764 12.3235C22.892 12.5371 23.3606 12.8501 23.7552 13.2448C24.1499 13.6394 24.4629 14.108 24.6765 14.6236C24.8901 15.1392 25 15.6919 25 16.25C25 17.3772 24.5522 18.4582 23.7552 19.2552C22.9582 20.0522 21.8772 20.5 20.75 20.5C19.6228 20.5 18.5418 20.0522 17.7448 19.2552C16.9478 18.4582 16.5 17.3772 16.5 16.25ZM20.75 13.5C20.0207 13.5 19.3212 13.7897 18.8055 14.3055C18.2897 14.8212 18 15.5207 18 16.25C18 16.9793 18.2897 17.6788 18.8055 18.1945C19.3212 18.7103 20.0207 19 20.75 19C21.4793 19 22.1788 18.7103 22.6945 18.1945C23.2103 17.6788 23.5 16.9793 23.5 16.25C23.5 15.5207 23.2103 14.8212 22.6945 14.3055C22.1788 13.7897 21.4793 13.5 20.75 13.5ZM16.75 23.5C16.1533 23.5 15.581 23.7371 15.159 24.159C14.7371 24.581 14.5 25.1533 14.5 25.75V26.938C14.5 26.956 14.513 26.972 14.531 26.975C18.65 27.647 22.851 27.647 26.969 26.975C26.9777 26.9736 26.9857 26.969 26.9914 26.9623C26.9971 26.9555 27.0001 26.9469 27 26.938V25.75C27 25.1533 26.7629 24.581 26.341 24.159C25.919 23.7371 25.3467 23.5 24.75 23.5H24.41C24.3832 23.4998 24.3565 23.5038 24.331 23.512L23.466 23.795C21.7012 24.3712 19.7988 24.3712 18.034 23.795L17.168 23.512C17.1431 23.504 17.1171 23.5 17.091 23.5H16.75ZM13 25.75C13 24.7554 13.3951 23.8016 14.0983 23.0983C14.8016 22.3951 15.7554 22 16.75 22H17.09C17.275 22 17.459 22.03 17.634 22.086L18.5 22.369C19.962 22.8462 21.538 22.8462 23 22.369L23.866 22.086C24.041 22.029 24.225 22 24.409 22H24.75C25.7446 22 26.6984 22.3951 27.4017 23.0983C28.1049 23.8016 28.5 24.7554 28.5 25.75V26.938C28.5 27.692 27.954 28.334 27.21 28.455C22.9317 29.1534 18.5683 29.1534 14.29 28.455C13.9299 28.3964 13.6024 28.2116 13.3661 27.9337C13.1298 27.6557 13 27.3028 13 26.938V25.75Z" fill="black"/>
+                </svg>
+           </div>
+       </nav>
+   </header>
+   <AdminAuthMenu />
+   <AdminMenu />
+</template>
+
+<script>
+import AdminAuthMenu from './admin-auth-menu.vue'
+import AdminMenu from './admin-menu.vue'
+import { mapState, mapActions } from 'vuex'
+
+export default {
+   components: {
+       AdminAuthMenu,
+       AdminMenu,
+   },
+   data() {
+    return {
+        //Klasa sticky dla headera
+        headerSticky: false,
+    }
+   },
+   computed: {
+    ...mapState(['adminMenuActive', 'adminAuthMenuActive'])
+   },
+   methods: {
+    ...mapActions(['setAdminMenuActive', 'setAdminAuthMenuActive']),
+  toggleAdminMenu() {
+    this.setAdminMenuActive(!this.adminMenuActive);
+  },
+  toggleAdminAuthMenu() {
+    this.setAdminAuthMenuActive(!this.adminAuthMenuActive);
+  },
+
+   },
+}
+
+</script>
+
+<style lang="scss" scoped>
+
+   .header {
+       position: fixed;
+       width: 100%;
+       max-width: 1920px;
+       background-color: var(--white);
+       transition: 0.5s;
+       top: 0px;
+       border-bottom: 1px solid var(--shadow);
+       border-bottom-left-radius: 25px;
+       border-bottom-right-radius: 25px;
+       z-index: 998;
+       .nav {
+           width: 95%;
+           margin-left: auto;
+           margin-right: auto;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding-top: 0.5rem;
+           padding-bottom: 0.5rem;
+           .nav-center {
+               a:not(:last-child) {
+                   margin-right: 2rem;
+               }
+               a {
+                   font-size: 20px;
+                   color: var(--black);
+                   text-decoration: none;
+                   transition: 0.5s;
+                   font-weight: 600;
+                   &:hover {
+                       color: var(--gold);
+                   }
+                   &.active {
+                       color: var(--gold);
+                   }
+               }
+           }
+           .nav-right {
+               display: flex;
+               align-items: center;
+               svg:not(:last-child) {
+                   margin-right: 1rem;
+               }
+               svg {
+                   cursor: pointer;
+                   &:hover {
+                       circle {
+                           fill: var(--black)
+                       }
+                       path {
+                           stroke: var(--gold);
+                       }
+                   }
+               }
+               .nav-menu {
+                   width: 41px;
+                   height: 41px;
+                   border-radius: 50px;
+                   background-color: var(--gold);
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+                   margin-right: 1rem;
+                   cursor: pointer;
+                   &:hover {
+                       background-color: var(--black);
+                       .wrapper-menu {
+                           .line-menu {
+                               background-color: var(--gold);
+                           }
+                       }
+                   }
+               }
+               .wrapper-menu {
+             width: 18px;
+             height: 18px;
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between;
+             cursor: pointer;
+             transition: transform 330ms ease-out;
+           }
+   
+           .wrapper-menu.active {
+             transform: rotate(-45deg);  
+           }
+   
+           .line-menu {
+             border-radius: 5px;
+             width: 100%;
+             height: 2px;
+           }
+   
+           .line-menu:nth-child(1) {
+             background-color: var(--black);
+           }
+           .line-menu:nth-child(2) {
+             background-color: var(--black);
+           }
+           .line-menu:nth-child(3) {
+             background-color: var(--black);
+           }
+   
+           .line-menu.half {
+             width: 50%;
+           }
+   
+           .line-menu.start {
+             transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+             transform-origin: right;
+           }
+   
+           .active .line-menu.start {
+             transform: rotate(-90deg) translateX(3px);
+           }
+   
+           .line-menu.end {
+             align-self: flex-end;
+             transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+             transform-origin: left;
+           }
+   
+           .active .line-menu.end {
+             transform: rotate(-90deg) translateX(-3px);
+           }
+           }
+       }
+   }
+
+   @media screen and (max-width: 1200px) {
+       .header {
+           top: 0;
+           .nav {
+               width: 90%;
+               .nav-center {
+                   display: none;
+               }
+               .nav-right {
+                   .nav-menu {
+                       display: flex;
+                   }
+               }
+               .nav-left {
+                   img {
+                       width: 80%;
+                   }
+               }
+           }
+       }
+   }
+</style>
+ 
